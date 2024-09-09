@@ -20,7 +20,7 @@ const {
   namePrefix,
   network,
   solanaMetadata,
-  gif,
+  gif
 } = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -81,7 +81,7 @@ const getElements = (path) => {
         name: cleanName(i),
         filename: i,
         path: `${path}${i}`,
-        weight: getRarityWeight(i),
+        weight: getRarityWeight(i)
       };
     });
 };
@@ -105,7 +105,7 @@ const layersSetup = (layersOrder) => {
     bypassDNA:
       layerObj.options?.["bypassDNA"] !== undefined
         ? layerObj.options?.["bypassDNA"]
-        : false,
+        : false
   }));
   return layers;
 };
@@ -139,7 +139,7 @@ const addMetadata = (_dna, _edition) => {
     date: dateTime,
     ...extraMetadata,
     attributes: attributesList,
-    compiler: "HashLips Art Engine",
+    compiler: "HashLips Art Engine"
   };
   if (network == NETWORK.sol) {
     tempMetadata = {
@@ -159,12 +159,12 @@ const addMetadata = (_dna, _edition) => {
         files: [
           {
             uri: `${_edition}.png`,
-            type: "image/png",
-          },
+            type: "image/png"
+          }
         ],
         category: "image",
-        creators: solanaMetadata.creators,
-      },
+        creators: solanaMetadata.creators
+      }
     };
   }
   metadataList.push(tempMetadata);
@@ -175,7 +175,7 @@ const addAttributes = (_element) => {
   let selectedElement = _element.layer.selectedElement;
   attributesList.push({
     trait_type: _element.layer.name,
-    value: selectedElement.name,
+    value: selectedElement.name
   });
 };
 
@@ -228,7 +228,7 @@ const constructLayerToDna = (_dna = "", _layers = []) => {
       name: layer.name,
       blend: layer.blend,
       opacity: layer.opacity,
-      selectedElement: selectedElement,
+      selectedElement: selectedElement
     };
   });
   return mappedDnaToLayers;
@@ -328,7 +328,7 @@ function shuffle(array) {
     currentIndex--;
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
-      array[currentIndex],
+      array[currentIndex]
     ];
   }
   return array;
@@ -340,7 +340,7 @@ const startCreating = async () => {
   let failedCount = 0;
   let abstractedIndexes = [];
   for (
-    let i = network == NETWORK.sol ? 0 : 1;
+    let i = 0;
     i <= layerConfigurations[layerConfigurations.length - 1].growEditionSizeTo;
     i++
   ) {
